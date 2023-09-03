@@ -1,3 +1,4 @@
+const passport = require("passport");
 const User = require("../models/user");
 const Message = require("../models/message");
 const bcrypt = require("bcryptjs");
@@ -60,7 +61,6 @@ exports.user_create_post = [
           const user = new User({
             username: req.body.username,
             password: hashedPassword,
-            // membership: "New",
           });
           await user.save();
         });
@@ -71,3 +71,18 @@ exports.user_create_post = [
     }
   }),
 ];
+
+exports.user_login_get = asyncHandler(async (req, res, next) => {
+  res.render("user_login", { title: "Log In" });
+});
+
+// exports.user_club_get = asyncHandler(async (req, res, next) => {
+//   res.render("user_joinclub", { title: "Join The Club" });
+// });
+
+// exports.user_club_post = [
+//   body("secret").equals("tangled"),
+//   asyncHandler(async (req, res, next) => {
+//     console.log(req.params.id);
+//   }),
+// ];

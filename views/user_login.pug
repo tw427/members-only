@@ -1,0 +1,14 @@
+extends layout 
+
+block content 
+  h1= title 
+
+  if (error)
+    p #{error}
+
+  form(method="POST" action="/account/log-in")
+    label.m-1(for="username") Username: 
+    input#username.form-control(name="username" placeholder="username" type="text")
+    label.m-1(for="password") Password: 
+    input#password.form-control(name="password" type="password")
+    button.btn.btn-primary.m-1 Log In

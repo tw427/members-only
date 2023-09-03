@@ -3,5 +3,16 @@ extends layout
 block content
   h1= title
   p Welcome to #{title}
+  if (currentUser)
+    p Welcome #{currentUser.username}!
+  ul 
+  if (!currentUser)
+    li 
+      a(href="/account/create") Create Account
+    li 
+      a(href="/account/log-in") Log In
 
-  a(href="/account/create") Create Account
+
+  hr
+  p There are a total of #{user_count} users
+  p and a total of #{message_count} messages posted!
