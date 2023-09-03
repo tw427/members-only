@@ -2,9 +2,11 @@ extends layout
 
 block content 
   h1= title
-  form.form-inline(method="POST" action="")
+  form(method="POST" action="")
     label.m-1(for="username") Username: 
     input#username.form-control(name="username" placeholder="username" type="text")
     label.m-1(for="password") Password: 
     input#password.form-control(name="password" type="password")
+    label.m-1(for="confirmPassword") Confirm Password: 
+    input#confirmPassword.form-control(name="confirmPassword" type="password")
     button.btn.btn-primary.m-1(type="submit") Sign Up

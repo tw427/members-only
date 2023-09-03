@@ -39,6 +39,9 @@ exports.user_create_post = [
     .trim()
     .isLength({ min: 1 })
     .escape(),
+  body("confirmPassword").custom((value, { req }) => {
+    return value === req.body.password;
+  }),
 
   asyncHandler(async (req, res, next) => {
     const errors = validationResult(req);
