@@ -2,12 +2,11 @@ extends layout
 
 block content
   nav.navbar
-    a(href="/") Home
     if (!currentUser)
     else if (currentUser.membership === "New")
-      a(href="/secret") Join Club 
+      a(href="/account/secret/" + currentUser.id) Join Club 
     else if (currentUser.membership.includes("Member", "Admin"))
-      a(href="/new-message") Create Message
+      a(href="/account/new-message") Create Message
     if (currentUser)
       p
         a(href="/log-out") Log out

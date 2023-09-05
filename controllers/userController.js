@@ -75,13 +75,37 @@ exports.user_login_get = asyncHandler(async (req, res, next) => {
   res.render("user_login", { title: "Log In" });
 });
 
-// exports.user_club_get = asyncHandler(async (req, res, next) => {
-//   res.render("user_joinclub", { title: "Join The Club" });
-// });
+exports.user_secret_get = asyncHandler(async (req, res, next) => {
+  console.log(req.params.id);
+  res.render("secret", {
+    title: "Join The Club",
+  });
+});
 
-// exports.user_club_post = [
-//   body("secret").equals("tangled"),
-//   asyncHandler(async (req, res, next) => {
-//     console.log(req.params.id);
-//   }),
-// ];
+exports.user_secret_post = [
+  body("secret").isLength({ min: 1 }).equals("tangled").escape(),
+  asyncHandler(async (req, res, next) => {
+    const errors = validationResult(req);
+
+    const user = new User({
+      membership: "Member",
+      _id: req.params.id,
+    });
+
+    if (!errors.isEmpty()) {
+      res.render("secret", {
+        title: "Join The Club",
+        test: "Secret phrase was incorrect!",
+        errors: errors.array(),
+      });
+    } else if (req.body.secret === "tangled") {
+      const updatedUser = await User.findByIdAndUpdate(req.params.id, user, {});
+      res.redirect("/");
+    } else {
+      res.render("secret", {
+        title: "Join The Club",
+        test: "Secret phrase was incorrect!",
+      });
+    }
+  }),
+];

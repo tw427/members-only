@@ -16,5 +16,8 @@ router.post(
     failureRedirect: "/account/log-in",
   })
 );
+// Secret | Join Club
+router.get("/secret/:id", user_controller.user_secret_get);
+router.post("/secret/:id", user_controller.user_secret_post);
 
 module.exports = router;
