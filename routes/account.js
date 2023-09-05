@@ -16,21 +16,5 @@ router.post(
     failureRedirect: "/account/log-in",
   })
 );
-// router.post("/log-in", function (req, res, next) {
-//   passport.authenticate("local", function (err, user, info) {
-//     if (err) {
-//       return next(err);
-//     }
-//     if (!user) {
-//       return res.render("user_login", { error: "Wrong username or password!" });
-//     }
-//     req.logIn(user, function (err) {
-//       if (err) {
-//         return next(err);
-//       }
-//       return res.redirect("/");
-//     })(req, res, next);
-//   });
-// });
 
 module.exports = router;

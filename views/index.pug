@@ -1,18 +1,29 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
-  if (currentUser)
-    p Welcome #{currentUser.username}!
-  ul 
-  if (!currentUser)
-    li 
-      a(href="/account/create") Create Account
-    li 
-      a(href="/account/log-in") Log In
-
-
-  hr
-  p There are a total of #{user_count} users
-  p and a total of #{message_count} messages posted!
+  nav.navbar
+    a(href="/") Home
+    if (!currentUser)
+    else if (currentUser.membership === "New")
+      a(href="/secret") Join Club 
+    else if (currentUser.membership.includes("Member", "Admin"))
+      a(href="/new-message") Create Message
+    if (currentUser)
+      p
+        a(href="/log-out") Log out
+  div.header
+    h1= title
+    p Welcome to #{title}
+    if (currentUser)
+      p Welcome #{currentUser.username}!
+      p Your membership status is: #{currentUser.membership}
+    ul 
+    if (!currentUser)
+      li 
+        a(href="/account/create") Create Account
+      li 
+        a(href="/account/log-in") Log In
+  div.footer
+    hr
+    p There are a total of #{user_count} users
+    p and a total of #{message_count} messages posted!

@@ -1,8 +1,15 @@
 body {
+  display: grid;
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
 a {
   color: #00B7FF;
+}
+
+nav.navbar {
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0;
 }
