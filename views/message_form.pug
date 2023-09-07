@@ -1,0 +1,9 @@
+extends layout
+
+block content 
+  h1= title 
+
+  form(method="POST" action="")
+    label.m-1(for="message") Message: 
+    textarea#message.form-control(name="message" placeholder="Your message (max char. 255)" maxlength="255")
+    button.btn.btn-primary.m-1(type="Submit") Post

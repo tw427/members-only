@@ -6,7 +6,7 @@ block content
     else if (currentUser.membership === "New")
       a(href="/account/secret/" + currentUser.id) Join Club 
     else if (currentUser.membership.includes("Member", "Admin"))
-      a(href="/account/new-message") Create Message
+      a(href="/account/new-message/create/" + currentUser.id) Create Message
     if (currentUser)
       p
         a(href="/log-out") Log out
