@@ -85,7 +85,7 @@ exports.user_secret_get = asyncHandler(async (req, res, next) => {
 });
 
 exports.user_secret_post = [
-  body("secret").isLength({ min: 1 }).equals("tangled").escape(),
+  body("secret").isLength({ min: 1 }).escape(),
   asyncHandler(async (req, res, next) => {
     const errors = validationResult(req);
 
@@ -102,6 +102,17 @@ exports.user_secret_post = [
       });
     } else if (req.body.secret === "tangled") {
       const updatedUser = await User.findByIdAndUpdate(req.params.id, user, {});
+      res.redirect("/");
+    } else if (req.body.secret === "odin") {
+      const userA = new User({
+        membership: "Admin",
+        _id: req.params.id,
+      });
+      const updatedUserA = await User.findByIdAndUpdate(
+        req.params.id,
+        userA,
+        {}
+      );
       res.redirect("/");
     } else {
       res.render("secret", {
