@@ -26,11 +26,13 @@ block content
     if (allMessages.length > 0)
       each message in allMessages
         div.message-container
-          p.message-title Title: #{message.title}
+          p.message-title #{message.title}
           hr
           p.message-body #{message.message}
-          hr
-          p.message-author Posted by: #[strong #{message.author}]
+          if (!currentUser)
+          else if (currentUser.membership !== "New")
+            hr
+            p.message-author Posted by: #[strong #{message.author}]
     else
       p There are no messages to display!
   div.footer
