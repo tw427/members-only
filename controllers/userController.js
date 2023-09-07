@@ -5,15 +5,17 @@ const { body, validationResult } = require("express-validator");
 const asyncHandler = require("express-async-handler");
 
 exports.index = asyncHandler(async (req, res, next) => {
-  const [numUsers, numMessages] = await Promise.all([
+  const [numUsers, numMessages, allMessages] = await Promise.all([
     User.countDocuments({}).exec(),
     Message.countDocuments({}).exec(),
+    Message.find({}).exec(),
   ]);
 
   res.render("index", {
     title: "Members Only",
     user_count: numUsers,
     message_count: numMessages,
+    allMessages: allMessages,
   });
 });
 

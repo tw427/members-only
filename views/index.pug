@@ -22,6 +22,17 @@ block content
         a(href="/account/create") Create Account
       li 
         a(href="/account/log-in") Log In
+  div.main-content
+    if (allMessages.length > 0)
+      each message in allMessages
+        div.message-container
+          p.message-title Title: #{message.title}
+          hr
+          p.message-body #{message.message}
+          hr
+          p.message-author Posted by: #[strong #{message.author}]
+    else
+      p There are no messages to display!
   div.footer
     hr
     p There are a total of #{user_count} users
